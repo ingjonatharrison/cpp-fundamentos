@@ -8,11 +8,26 @@ struct Estudiante {
 };
 
 void registrarEstudiantes(Estudiante alumnos[], int &cantidad) {
+
     cout << "Cuantos estudiantes deseas agregar? ";
     int nuevos;
     cin >> nuevos;
 
+    // 🔴 Validación 1: arreglo lleno
+    if (cantidad >= 100) {
+        cout << "No se pueden agregar mas estudiantes. Limite alcanzado.\n";
+        return;
+    }
+
+    // 🔴 Validación 2: evitar desbordamiento
+    if (cantidad + nuevos > 100) {
+        cout << "Supera el limite de 100 estudiantes.\n";
+        return;
+    }
+
+    // ✅ Si pasa validaciones, ahora sí ejecutamos el for
     for (int i = 0; i < nuevos; i++) {
+
         cout << "\nEstudiante " << cantidad + 1 << endl;
 
         cout << "Nombre: ";
@@ -27,6 +42,7 @@ void registrarEstudiantes(Estudiante alumnos[], int &cantidad) {
         cantidad++;
     }
 }
+
 
 void mostrarEstudiantes(Estudiante alumnos[], int cantidad) {
     if (cantidad == 0) {
